@@ -1,3 +1,3 @@
 ## My game of Tic Tac Toe
 
-Class practice
+This exercise uses HTML, CSS, and jQuery
