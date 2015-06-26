@@ -23,9 +23,10 @@ function selecting(){
       var color = $('.active').css('background-color');
       $(this).css('background-color', color);
       turnNumber += 1;
-      //if (checkWinComboExists(winningMatrix)) {setWinner(this.id);}
-      if (checkWinComboExists(winningMatrix, color)) {setWinner(this.id);}
-      else{
+      if (checkWinComboExists(winningMatrix, color)) {
+        console.log('Thhhhhhhhhhis: ', $('active').text());
+        setWinner(this.id);
+      }else{
         if (checkForTie()){
           setTie();
           reset();}
@@ -41,10 +42,11 @@ function reset(){
   $('td').css('background-color', '#ffffff');
   turnNumber = 0;
   isReset = true;
+  isStarted = false;
 }
 
 function start(){
-  if (isReset){   //make sure the table is reset, otherwise nothing is done
+  if (isReset && !isStarted){   //make sure the table is reset, otherwise nothing is done
     $('#players').show();
     var p1 = $('#p1-choose').val();
     var p2 = $('#p2-choose').val();
