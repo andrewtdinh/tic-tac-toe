@@ -28,16 +28,16 @@ html
           td
           td
           td
-    p.colorMsg Click on the player's color to choose another one.
     #chooser
+      p#colorMsg Click on a colored rectangle to choose another color:
       label Player 1: &nbsp;
       input#p1-choose(type='color', value='#ff33cc')
       br
       label Player 2: &nbsp;
       input#p2-choose(type='color', value='#33ccff')
     #players
-      #p1.player Player 1 
-      #p2.player Player 2
+      #p1.player P1 
+      #p2.player P2
     h2#game-verdict
     script(src='/vendor/jquery/dist/jquery.min.js')
     script(src='/vendor/lodash/lodash.min.js')
