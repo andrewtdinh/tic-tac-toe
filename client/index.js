@@ -8,6 +8,7 @@ var winningMatrix = ['012', '345', '678', '036', '147', '258', '048', '246',
                      '210', '543', '876', '630', '741', '852', '840', '642',
                      '201', '534', '867', '603', '714', '825', '804', '624'];
 var turnNumber = 0;
+var isReset = false;
 
 function init(){
   $('#reset').click(reset);
@@ -16,17 +17,18 @@ function init(){
 }
 
 function selecting(){
-  var color = $('.active').css('background-color');
-  $(this).css('background-color', color);
-  turnNumber += 1;
-  // debugger;
-  //if (checkWinComboExists(winningMatrix)) {setWinner(this.id);}
-  if (checkWinComboExists(winningMatrix, color)) {setWinner(this.id);}
-  else{
-    if (checkForTie()){
-      setTie();
-      reset();}
-    else {$('.player').toggleClass('active');}
+  if (isReset){   //Check if the board was reset.  If not, nothing is done.
+    var color = $('.active').css('background-color');
+    $(this).css('background-color', color);
+    turnNumber += 1;
+    //if (checkWinComboExists(winningMatrix)) {setWinner(this.id);}
+    if (checkWinComboExists(winningMatrix, color)) {setWinner(this.id);}
+    else{
+      if (checkForTie()){
+        setTie();
+        reset();}
+      else {$('.player').toggleClass('active');}
+    }
   }
 }
 
@@ -36,20 +38,23 @@ function reset(){
   $('#players').hide();
   $('td').css('background-color', '#ffffff');
   turnNumber = 0;
+  isReset = true;
 }
 
 function start(){
-  $('#players').show();
-  var p1 = $('#p1-choose').val();
-  var p2 = $('#p2-choose').val();
-  $('#p1').css('background-color', p1);
-  $('#p2').css('background-color', p2);
-  $('#chooser').hide();
+  if (isReset){   //make sure the table is reset, otherwise nothing is done
+    $('#players').show();
+    var p1 = $('#p1-choose').val();
+    var p2 = $('#p2-choose').val();
+    $('#p1').css('background-color', p1);
+    $('#p2').css('background-color', p2);
+    $('#chooser').hide();
 
-  var rnd = Math.floor(Math.random() * 2) + 1;
-  $('.player').removeClass('active');
-  $('#p' + rnd).addClass('active');
-  turnNumber = 0;
+    var rnd = Math.floor(Math.random() * 2) + 1;
+    $('.player').removeClass('active');
+    $('#p' + rnd).addClass('active');
+    turnNumber = 0;
+  }
 }
 
 function setWinner(str){
