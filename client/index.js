@@ -9,6 +9,7 @@ var winningMatrix = ['012', '345', '678', '036', '147', '258', '048', '246',
                      '201', '534', '867', '603', '714', '825', '804', '624'];
 var turnNumber = 0;
 var isReset = false;
+var isStarted = false;
 
 function init(){
   $('#reset').click(reset);
@@ -18,20 +19,21 @@ function init(){
 
 function selecting(){
   if (isReset){   //Check if the board was reset.  If not, nothing is done.
-    var color = $('.active').css('background-color');
-    $(this).css('background-color', color);
-    turnNumber += 1;
-    //if (checkWinComboExists(winningMatrix)) {setWinner(this.id);}
-    if (checkWinComboExists(winningMatrix, color)) {setWinner(this.id);}
-    else{
-      if (checkForTie()){
-        setTie();
-        reset();}
-      else {$('.player').toggleClass('active');}
+    if (isStarted){
+      var color = $('.active').css('background-color');
+      $(this).css('background-color', color);
+      turnNumber += 1;
+      //if (checkWinComboExists(winningMatrix)) {setWinner(this.id);}
+      if (checkWinComboExists(winningMatrix, color)) {setWinner(this.id);}
+      else{
+        if (checkForTie()){
+          setTie();
+          reset();}
+        else {$('.player').toggleClass('active');}
+      }
     }
   }
 }
-
 
 function reset(){
   $('#chooser').show();
@@ -54,6 +56,7 @@ function start(){
     $('.player').removeClass('active');
     $('#p' + rnd).addClass('active');
     turnNumber = 0;
+    isStarted = true;
   }
 }
 
