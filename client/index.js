@@ -10,6 +10,7 @@ var winningMatrix = ['012', '345', '678', '036', '147', '258', '048', '246',
 var turnNumber = 0;
 var isReset = false;
 var isStarted = false;
+var currentPlayer;
 
 function init(){
   $('#reset').click(reset);
@@ -21,11 +22,12 @@ function selecting(){
   if (isReset){   //Check if the board was reset.  If not, nothing is done.
     if (isStarted){
       var color = $('.active').css('background-color');
+      currentPlayer = $('.active').attr('id');
       $(this).css('background-color', color);
       turnNumber += 1;
       if (checkWinComboExists(winningMatrix, color)) {
-        console.log('Thhhhhhhhhhis: ', $('active').text());
-        setWinner(this.id);
+        // console.log('Thhhhhhhhhhis: ', $('.active').attr('id'));
+        setWinner(currentPlayer);
       }else{
         if (checkForTie()){
           setTie();
@@ -79,11 +81,6 @@ function checkOneWinCombo(winStr, color){
   var firstColor = $($('tbody > tr > td')[strArr[0]*1]).css('background-color');
   var secondColor = $($('tbody > tr > td')[strArr[1]*1]).css('background-color');
   var thirdColor = $($('tbody > tr > td')[strArr[2]*1]).css('background-color');
-  // if ((firstColor === "rgba(0, 0, 0, 0)") ||
-  //     (secondColor === "rgba(0, 0, 0, 0)") ||
-  //     (thirdColor === "rgba(0, 0, 0, 0)")){
-  //       return false;
-  //     }
   if ((firstColor === color) && (secondColor === color) && (thirdColor === color)){
     return true;
   }
