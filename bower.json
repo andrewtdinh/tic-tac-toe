@@ -1,9 +1,9 @@
 {
-  "name": "front-end-prototype",
+  "name": "Tic-Tac-Toe",
   "version": "0.0.1",
-  "homepage": "https://github.com/chyld/front-end-prototype",
+  "homepage": "http://andrewtdinh.com",
   "authors": [
-    "Chyld Medford <chyld.medford@gmail.com>"
+    "Andrew Dinh <andrewdinh74@yahoo.com>"
   ],
   "license": "BSD",
   "dependencies": {
