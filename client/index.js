@@ -41,6 +41,7 @@ function selecting(){
 function reset(){
   $('#chooser').show();
   $('#players').hide();
+  $('#game-verdict').hide();
   $('td').css('background-color', '#ffffff');
   turnNumber = 0;
   isReset = true;
@@ -67,6 +68,7 @@ function start(){
 function setWinner(str){
   var clickedIndex = ($(this).index());
   $('#p1').hasClass('active') ? p1-status + clickedIndex : p2-status + clickedIndex;
+  $('#game-verdict').show();
   $('#game-verdict').text(str + ' is the Winner!!');
 }
 
