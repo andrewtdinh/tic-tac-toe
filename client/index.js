@@ -68,7 +68,6 @@ function setWinner(str){
   var clickedIndex = ($(this).index());
   $('#p1').hasClass('active') ? p1-status + clickedIndex : p2-status + clickedIndex;
   $('#game-verdict').text(str + ' is the Winner!!');
-  reset();
 }
 
 function setTie(){
